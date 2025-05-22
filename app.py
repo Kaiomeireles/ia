@@ -4,6 +4,7 @@ import numpy as np
 import scipy.stats as stats
 import matplotlib.pyplot as plt
 import seaborn as sns
+import requests
 import plotly.express as px
 from sklearn.linear_model import LinearRegression
 from sklearn.metrics import r2_score
@@ -166,11 +167,40 @@ elif menu == "Regressão Linear":
 
 # IA Integrada
 elif menu == "IA Integrada":
-    st.title("IA Integrada 🤖")
-    st.write("Interaja com a IA sobre impacto da automação.")
+    st.title("IA Integrada com OpenRouter 🤖")
+    st.write("Interaja com uma IA real via OpenRouter sobre o impacto da automação no mercado de trabalho.")
+
     pergunta = st.text_input("Faça sua pergunta:")
+
     if pergunta:
-        st.info("Resposta automática: A IA impacta de forma diferente conforme o setor e a região.")
+        with st.spinner("Consultando a IA via OpenRouter..."):
+
+            api_key = "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"  # ← coloque aqui sua chave do OpenRouter
+            headers = {
+                "Authorization": f"Bearer {api_key}",
+                "Content-Type": "application/json"
+            }
+
+            data = {
+                "model": "mistralai/devstral-small:free",  # ← aqui o modelo gratuito que você quer
+                "messages": [
+                    {"role": "system", "content": "Você é um especialista em mercado de trabalho e inteligência artificial."},
+                    {"role": "user", "content": pergunta}
+                ]
+            }
+
+            response = requests.post(
+                "https://openrouter.ai/api/v1/chat/completions",
+                headers=headers,
+                json=data
+            )
+
+            if response.status_code == 200:
+                resposta = response.json()
+                conteudo = resposta['choices'][0]['message']['content']
+                st.success(conteudo)
+            else:
+                st.error(f"Erro na API: {response.status_code} - {response.text}")
 
 # Mapa Geoespacial
 elif menu == "Mapa Geoespacial":
