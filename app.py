@@ -140,30 +140,40 @@ elif menu == "Regressão Linear":
     ax.legend()
     st.pyplot(fig)
 
+
 # IA Integrada
 elif menu == "IA Integrada":
     st.title("IA Integrada com OpenRouter 🤖")
     st.write("Interaja com uma IA real via OpenRouter sobre o impacto da automação no mercado de trabalho.")
+
     pergunta = st.text_input("Faça sua pergunta:")
+
     if pergunta:
         with st.spinner("Consultando a IA via OpenRouter..."):
-            api_key = st.secrets["OPENROUTER_API_KEY"]  # ← Corrigido: variável do secrets
+
+            # Teste: Ver se a chave foi lida do st.secrets
+            api_key = st.secrets["OPENROUTER_API_KEY"]
+            st.write(f"Chave carregada: {api_key[:8]}********")  # 👈 TESTE VISUAL AQUI
+
             headers = {
                 "Authorization": f"Bearer {api_key}",
                 "Content-Type": "application/json"
             }
+
             data = {
-                "model": "mistralai/devstral-small:free",
+                "model": "mistralai/devstral-small:free",  # Modelo gratuito
                 "messages": [
                     {"role": "system", "content": "Você é um especialista em mercado de trabalho e inteligência artificial."},
                     {"role": "user", "content": pergunta}
                 ]
             }
+
             response = requests.post(
                 "https://openrouter.ai/api/v1/chat/completions",
                 headers=headers,
                 json=data
             )
+
             if response.status_code == 200:
                 resposta = response.json()
                 conteudo = resposta['choices'][0]['message']['content']
