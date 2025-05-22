@@ -40,13 +40,14 @@ menu = st.sidebar.selectbox(
      "Regressão Linear", "IA Integrada", "Mapa Geoespacial"]
 )
 st.sidebar.subheader("Integrantes 👥")
+
 st.sidebar.markdown("""
-- **Kaio Vinicius Meireles Alves** — RM553282  
-- **Lucas Alves de Souza** — RM553956  
-- **Lucas de Freitas Pagung** — RM553242  
-- **Guilherme Fernandes de Freitas** — RM554323  
-- **João Pedro Chizzolini de Freitas** — RM553172  
-""")
+<img src="URL_DA_IMAGEM1" width="30"> **Kaio Vinicius Meireles Alves** — RM553282  
+<img src="URL_DA_IMAGEM2" width="30"> **Lucas Alves de Souza** — RM553956  
+<img src="URL_DA_IMAGEM3" width="30"> **Lucas de Freitas Pagung** — RM553242  
+<img src="URL_DA_IMAGEM4" width="30"> **Guilherme Fernandes de Freitas** — RM554323  
+<img src="URL_DA_IMAGEM5" width="30"> **João Pedro Chizzolini de Freitas** — RM553172  
+""", unsafe_allow_html=True)
 
 # Introdução
 if menu == "Introdução":
