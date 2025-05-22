@@ -201,10 +201,6 @@ elif menu == "IA Integrada":
                 st.success(conteudo)
             else:
                 st.error(f"Erro na API: {response.status_code} - {response.text}")
-headers = {
-    "Authorization": f"Bearer {api_key}",
-    "Content-Type": "application/json"
-}
 
 # Mapa Geoespacial
 elif menu == "Mapa Geoespacial":
