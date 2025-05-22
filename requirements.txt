@@ -7,3 +7,4 @@ seaborn
 plotly
 pydeck
 scikit-learn
+OPENROUTER_API_KEY="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"  # Sua chave real aqui
