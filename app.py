@@ -175,14 +175,15 @@ elif menu == "IA Integrada":
     if pergunta:
         with st.spinner("Consultando a IA via OpenRouter..."):
 
-            api_key = st.secrets["OPENROUTER_API_KEY"]   # ← coloque aqui sua chave do OpenRouter
+            api_key = st.secrets["OPENROUTER_API_KEY"]  # ← Correto: chave deve estar no painel de Secrets
+
             headers = {
                 "Authorization": f"Bearer {api_key}",
                 "Content-Type": "application/json"
             }
 
             data = {
-                "model": "mistralai/devstral-small:free",  # ← aqui o modelo gratuito que você quer
+                "model": "mistralai/devstral-small:free",  # ← modelo gratuito
                 "messages": [
                     {"role": "system", "content": "Você é um especialista em mercado de trabalho e inteligência artificial."},
                     {"role": "user", "content": pergunta}
