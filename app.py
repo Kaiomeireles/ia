@@ -191,7 +191,6 @@ elif menu == "IA Integrada":
             else:
                 st.error(f"Erro na API: {response.status_code} - {response.text}")
 
-# Mapa Geoespacial
 elif menu == "Mapa Geoespacial":
     st.title("Mapa Geoespacial 🌍")
     st.write("Visualize o impacto da IA em diferentes regiões do mundo com um mapa interativo.")
@@ -226,11 +225,11 @@ elif menu == "Mapa Geoespacial":
         get_line_color=[0, 0, 0]
     )
 
-    # View inicial do mapa
+    # View inicial do mapa — AJUSTE DE ZOOM
     view_state = pdk.ViewState(
-        latitude=0,
-        longitude=0,
-        zoom=1,
+        latitude=20,      # Ajustado para focar mais acima do Equador
+        longitude=0,      # Foco central do mundo
+        zoom=2,           # Mais próximo do globo
         pitch=0
     )
 
