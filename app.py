@@ -151,14 +151,20 @@ elif menu == "IA Integrada":
     if pergunta:
         with st.spinner("Consultando a IA via OpenRouter..."):
 
-            # Teste: Ver se a chave foi lida do st.secrets
-            api_key = st.secrets["OPENROUTER_API_KEY"]
-            st.write(f"Chave carregada: {api_key[:8]}********")  # 👈 TESTE VISUAL AQUI
+            # Carrega e limpa a chave
+            api_key = st.secrets["OPENROUTER_API_KEY"].strip()
+
+            # Testes visuais para garantir que a chave está correta
+            st.write(f"Chave carregada: {api_key[:8]}********")
+            st.write(f"Chave tamanho: {len(api_key)}")  # Deve ser ~66
 
             headers = {
-                "Authorization": f"Bearer {api_key}",
+                "Authorization": f"Bearer {api_key}",  # ATENÇÃO: "Bearer" com espaço!
                 "Content-Type": "application/json"
             }
+
+            # Teste: exibe o header (parcial) só para confirmar
+            st.write(f"Header Authorization: {headers['Authorization'][:20]}********")
 
             data = {
                 "model": "mistralai/devstral-small:free",  # Modelo gratuito
@@ -168,8 +174,11 @@ elif menu == "IA Integrada":
                 ]
             }
 
+            # URL correta da API
+            url = "https://openrouter.ai/api/v1/chat/completions"
+
             response = requests.post(
-                "https://openrouter.ai/api/v1/chat/completions",
+                url,
                 headers=headers,
                 json=data
             )
