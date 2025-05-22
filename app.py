@@ -175,7 +175,7 @@ elif menu == "IA Integrada":
     if pergunta:
         with st.spinner("Consultando a IA via OpenRouter..."):
 
-            api_key = " "  # ← coloque aqui sua chave do OpenRouter
+            api_key = "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"  # ← coloque aqui sua chave do OpenRouter
             headers = {
                 "Authorization": f"Bearer {api_key}",
                 "Content-Type": "application/json"
