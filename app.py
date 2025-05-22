@@ -39,6 +39,14 @@ menu = st.sidebar.selectbox(
     ["Introdução", "Base de Dados", "Análise Descritiva", "Inferência Estatística", 
      "Regressão Linear", "IA Integrada", "Mapa Geoespacial"]
 )
+st.sidebar.subheader("Integrantes 👥")
+st.sidebar.markdown("""
+- **Kaio Vinicius Meireles Alves** — RM553282  
+- **Lucas Alves de Souza** — RM553956  
+- **Lucas de Freitas Pagung** — RM553242  
+- **Guilherme Fernandes de Freitas** — RM554323  
+- **João Pedro Chizzolini de Freitas** — RM553172  
+""")
 
 # Introdução
 if menu == "Introdução":
