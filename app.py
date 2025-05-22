@@ -193,9 +193,27 @@ elif menu == "IA Integrada":
 # Mapa Geoespacial
 elif menu == "Mapa Geoespacial":
     st.title("Mapa Geoespacial 🌍")
-    st.write("Sem dados de geolocalização disponíveis para gerar o mapa.")
-    st.warning("Para visualizar o mapa, adicione as colunas 'Latitude' e 'Longitude' ao CSV.")
+    st.write("Visualize o impacto da IA em diferentes regiões do mundo.")
 
+    # Criando dados fictícios relacionados ao impacto da IA
+    dados_mapa = pd.DataFrame({
+        'Setor': ['Tecnologia', 'Saúde', 'Indústria', 'Educação', 'Agricultura'],
+        'Região': ['América do Norte', 'Europa', 'Ásia', 'América Latina', 'África'],
+        'Impacto': [80, 65, 70, 60, 50],
+        'Latitude': [37.7749, 48.8566, 35.6895, -23.5505, -1.2921],
+        'Longitude': [-122.4194, 2.3522, 139.6917, -46.6333, 36.8219]
+    })
+
+    st.write("**Dados de impacto geolocalizados:**")
+    st.dataframe(dados_mapa)
+
+    st.write("**Mapa com pontos representando o impacto da IA:**")
+    
+    st.map(dados_mapa[['Latitude', 'Longitude']])
+
+    st.write("""
+    Este mapa ilustra de forma geoespacial como diferentes setores econômicos são impactados pela adoção da IA em várias regiões do mundo.
+    """)
 # Rodapé
 st.sidebar.title("Sobre o Projeto")
 st.sidebar.write("Explore o impacto da IA no mercado de trabalho.")
