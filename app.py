@@ -40,11 +40,49 @@ menu = st.sidebar.selectbox(
 
 # Introdução
 if menu == "Introdução":
-    st.title("Introdução 🚀")
+    st.title("Impacto da IA no Mercado de Trabalho 🚀")
+
     st.write("""
-    A inteligência artificial (IA) está transformando o mercado de trabalho global, criando uma nova dinâmica entre profissões emergentes e aquelas em declínio.
-    Este projeto explora como a adoção da IA afeta diferentes setores e regiões, propondo análises baseadas em dados para compreender suas implicações.
+    Este projeto explora de forma **abrangente** como a **Inteligência Artificial (IA)** está transformando o mercado de trabalho em diferentes setores e regiões do mundo.
+
+    A seguir, você encontrará análises e visualizações baseadas em dados, abordando desde estatísticas descritivas até inferências estatísticas, além de uma integração com IA para interação dinâmica.
     """)
+
+    st.subheader("✅ O que você vai ver neste projeto:")
+
+    st.markdown("""
+    - **📊 Base de Dados**: Visualização dos dados utilizados, separados por setor e região, com cálculo de intervalos de confiança para estimar a média de impacto da IA.
+    
+    - **📈 Análise Descritiva**: Estatísticas básicas e gráficos para entender a distribuição do impacto da IA em diferentes setores.
+    
+    - **📉 Inferência Estatística**: Testes de hipóteses para identificar se há diferenças significativas entre os setores quanto ao impacto da IA.
+    
+    - **📊 Regressão Linear**: Modelagem estatística para analisar a relação entre variáveis, explorando a correlação entre regiões e impacto da IA.
+    
+    - **🤖 IA Integrada**: Um espaço interativo para perguntas, simulando a integração de uma IA no contexto do projeto.
+    
+    - **🌍 Mapa Geoespacial**: Apresentação da ideia de mapear o impacto da IA pelo mundo, destacando a importância da geolocalização na análise — com a possibilidade de expansão futura incluindo dados de latitude e longitude.
+    """)
+
+    st.subheader("🎯 Objetivo Geral")
+
+    st.write("""
+    Analisar o **impacto da adoção da IA** nos setores econômicos e nas regiões, utilizando técnicas estatísticas e visualizações, para compreender:
+    
+    - Quais setores são mais impactados pela automação.
+    - Como o impacto varia entre regiões.
+    - Quais tendências podem ser observadas para o futuro do mercado de trabalho.
+    """)
+
+    st.subheader("💡 Hipóteses Investigadas")
+
+    st.write("""
+    - O setor de **Tecnologia** é o mais impactado positivamente pela IA.
+    - Regiões mais **desenvolvidas** possuem maior adoção da automação.
+    - Profissões **criativas** tendem a sofrer menos com a automação.
+    """)
+
+    st.success("Explore o menu lateral para navegar pelas seções e confira as análises que realizamos! 🚀")
 
 # Base de Dados + Intervalo de Confiança
 elif menu == "Base de Dados":
