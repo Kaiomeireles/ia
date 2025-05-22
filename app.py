@@ -202,9 +202,8 @@ elif menu == "IA Integrada":
 
 elif menu == "Mapa Geoespacial":
     st.title("Mapa Geoespacial 🌍")
-    st.write("Visualize o impacto da IA em diferentes regiões do mundo com um mapa interativo.")
+    st.write("Visualize o impacto da IA em diferentes regiões do mundo com um mapa interativo e colunas 3D.")
 
-    # Dados fictícios representando o impacto da IA
     dados_mapa = pd.DataFrame({
         'Setor': ['Tecnologia', 'Saúde', 'Indústria', 'Educação', 'Agricultura'],
         'Região': ['América do Norte', 'Europa', 'Ásia', 'América Latina', 'África'],
@@ -216,30 +215,25 @@ elif menu == "Mapa Geoespacial":
     st.write("**Dados de impacto geolocalizados:**")
     st.dataframe(dados_mapa)
 
-    # Configuração do pydeck para criar bolhas proporcionais ao impacto
+    # ColumnLayer - Barras 3D
     layer = pdk.Layer(
-        "ScatterplotLayer",
-        dados_mapa,
-        pickable=True,
-        opacity=0.8,
-        stroked=True,
-        filled=True,
-        radius_scale=5000,
-        radius_min_pixels=5,
-        radius_max_pixels=50,
-        line_width_min_pixels=1,
+        "ColumnLayer",
+        data=dados_mapa,
         get_position='[Longitude, Latitude]',
-        get_radius='Impacto',
-        get_fill_color='[255 - Impacto, Impacto, 100]',
-        get_line_color=[0, 0, 0]
+        get_elevation='Impacto * 1000',  # Ajusta a altura conforme impacto
+        elevation_scale=1,
+        radius=200000,  # raio da base da coluna
+        get_fill_color='[255 - Impacto, Impacto, 100, 200]',  # cor proporcional ao impacto
+        pickable=True,
+        auto_highlight=True,
     )
 
-    # View inicial do mapa — AJUSTE DE ZOOM
     view_state = pdk.ViewState(
-        latitude=20,      # Ajustado para focar mais acima do Equador
-        longitude=0,      # Foco central do mundo
-        zoom=2,           # Mais próximo do globo
-        pitch=0
+        latitude=20,
+        longitude=0,
+        zoom=1.5,
+        pitch=45,  # Inclinação para parecer mais 3D
+        bearing=0
     )
 
     r = pdk.Deck(
@@ -251,7 +245,7 @@ elif menu == "Mapa Geoespacial":
     st.pydeck_chart(r)
 
     st.write("""
-    Este **mapa mundi** interativo mostra, com o tamanho das bolhas e cores, o **nível de impacto da IA** em diferentes setores e regiões do mundo.
+    Este **mapa mundi interativo** mostra com colunas 3D o **nível de impacto da IA** em diferentes setores e regiões do mundo.
     """)
 # Rodapé
 st.sidebar.title("Sobre o Projeto")
