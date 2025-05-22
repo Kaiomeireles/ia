@@ -193,9 +193,9 @@ elif menu == "IA Integrada":
 # Mapa Geoespacial
 elif menu == "Mapa Geoespacial":
     st.title("Mapa Geoespacial 🌍")
-    st.write("Visualize o impacto da IA em diferentes regiões do mundo.")
+    st.write("Visualize o impacto da IA em diferentes regiões do mundo com um mapa interativo.")
 
-    # Criando dados fictícios relacionados ao impacto da IA
+    # Dados fictícios representando o impacto da IA
     dados_mapa = pd.DataFrame({
         'Setor': ['Tecnologia', 'Saúde', 'Indústria', 'Educação', 'Agricultura'],
         'Região': ['América do Norte', 'Europa', 'Ásia', 'América Latina', 'África'],
@@ -207,12 +207,42 @@ elif menu == "Mapa Geoespacial":
     st.write("**Dados de impacto geolocalizados:**")
     st.dataframe(dados_mapa)
 
-    st.write("**Mapa com pontos representando o impacto da IA:**")
-    
-    st.map(dados_mapa[['Latitude', 'Longitude']])
+    # Configuração do pydeck para criar bolhas proporcionais ao impacto
+    layer = pdk.Layer(
+        "ScatterplotLayer",
+        dados_mapa,
+        pickable=True,
+        opacity=0.8,
+        stroked=True,
+        filled=True,
+        radius_scale=5000,
+        radius_min_pixels=5,
+        radius_max_pixels=50,
+        line_width_min_pixels=1,
+        get_position='[Longitude, Latitude]',
+        get_radius='Impacto',
+        get_fill_color='[255 - Impacto, Impacto, 100]',
+        get_line_color=[0, 0, 0]
+    )
+
+    # View inicial do mapa
+    view_state = pdk.ViewState(
+        latitude=0,
+        longitude=0,
+        zoom=1,
+        pitch=0
+    )
+
+    r = pdk.Deck(
+        layers=[layer],
+        initial_view_state=view_state,
+        tooltip={"text": "Setor: {Setor}\nRegião: {Região}\nImpacto: {Impacto}%"}
+    )
+
+    st.pydeck_chart(r)
 
     st.write("""
-    Este mapa ilustra de forma geoespacial como diferentes setores econômicos são impactados pela adoção da IA em várias regiões do mundo.
+    Este **mapa mundi** interativo mostra, com o tamanho das bolhas e cores, o **nível de impacto da IA** em diferentes setores e regiões do mundo.
     """)
 # Rodapé
 st.sidebar.title("Sobre o Projeto")
