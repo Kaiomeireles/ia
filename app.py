@@ -2,11 +2,11 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import scipy.stats as stats
-import pydeck as pdk
 import matplotlib.pyplot as plt
 import seaborn as sns
 import requests
 import plotly.express as px
+import pydeck as pdk
 from sklearn.linear_model import LinearRegression
 from sklearn.metrics import r2_score
 
